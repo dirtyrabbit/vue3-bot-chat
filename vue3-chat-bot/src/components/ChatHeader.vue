@@ -1,5 +1,5 @@
 <template>
-    <div class="avatar">
+    <div class="content">
         <el-row>
             <el-col :span="4">
                 <div>
@@ -20,15 +20,17 @@ import { UserFilled } from '@element-plus/icons-vue'
 </script>
 
 <style scoped>
-.avatar {
+.content {
   display: flex;
+  margin: 5px;
 }
-.avatar > div {
+.content > div {
   flex: 1;
   text-align: center;
 }
 
-.avatar > div:not(:last-child) {
+.content > div:not(:last-child) {
   border-right: 1px solid var(--el-border-color);
 }
 </style>
+

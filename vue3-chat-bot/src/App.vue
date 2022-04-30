@@ -1,83 +1,33 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-import Composite from './components/Composite.vue'
+import ChatHeader from './components/ChatHeader.vue'
+import ChatBody from './components/ChatBody.vue'
+import ChatInpute from './components/ChatInpute.vue'
+import { UserFilled } from '@element-plus/icons-vue'
+// import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+    <div style="display: flex; position: fixed; bottom:20px; left:10px; align-items: center">
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+    <el-popover
+      
+      placement="top-start"
+      :width="300"
+      trigger="click"
+      popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding: 0px; height: 400px;"
+    >
+      <!-- bot chat button icon -->
+      <template #reference>
+        <el-avatar :icon="UserFilled" />
+      </template>
 
-  <main>
-    <TheWelcome />
-    <Composite />
-  </main>
+      <!-- bot chat content -->
+      <template #default>
+        <chat-header></chat-header>
+        <chat-body ></chat-body>
+        <chat-inpute></chat-inpute>
+      </template>
+
+    </el-popover>
+  </div>
 </template>
-
-<style>
-@import './assets/base.css';
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
-}
-
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-}
-</style>
