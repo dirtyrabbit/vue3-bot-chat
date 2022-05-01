@@ -1,7 +1,7 @@
 <script setup>
 import ChatHeader from './components/ChatHeader.vue'
 import ChatBody from './components/ChatBody.vue'
-import ChatInpute from './components/ChatInpute.vue'
+
 import { UserFilled } from '@element-plus/icons-vue'
 // import TheWelcome from './components/TheWelcome.vue'
 </script>
@@ -25,7 +25,6 @@ import { UserFilled } from '@element-plus/icons-vue'
       <template #default>
         <chat-header></chat-header>
         <chat-body ></chat-body>
-        <chat-inpute></chat-inpute>
       </template>
 
     </el-popover>
