@@ -8,4 +8,6 @@ const Vue3ChatBot = createApp(App)
 Vue3ChatBot.use(ElementPlus)
 Vue3ChatBot.mount('#app')
 
-module.exports = Vue3ChatBot;
+export{
+    Vue3ChatBot
+}
