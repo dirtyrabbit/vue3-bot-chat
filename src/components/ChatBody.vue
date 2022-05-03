@@ -5,16 +5,10 @@
       <el-col :span="24">
         <el-scrollbar ref="scrollbarRef" height="250px">
           <div v-for="value in msgList" :key="value">
+
+            <!-- Print bot response -->
             <el-row v-if="value.botmsg != null">
-              <div
-                style="
-                  display: flex;
-                  align-items: center;
-                  justify-content: left;
-                  margin: 5px;
-                "
-              >
-                <!-- Print bot response -->
+              <div class="avatar">
                 <el-avatar :size="25" :icon="UserFilled" />
               </div>
               <div>
@@ -32,24 +26,18 @@
                 <div class="msgcontent">{{ value.input }}</div>
               </div>
             </el-row>
+
           </div>
         </el-scrollbar>
       </el-col>
     </el-row>
+    
     <!-- Hot button -->
-    <!-- <el-scrollbar>
-    <div class="scrollbar-flex-content">
-      <div v-for="item in 50" :key="item" class="scrollbar-demo-item">
-        {{ item }}
-      </div>
-    </div>
-  </el-scrollbar> -->
-
     <el-row style="height: 48px">
       <el-scrollbar>
         <div class="scrollbar-flex-content">
-          <div v-for="value in hotButData" :key="value" style="display: flex">
-            <hot-button :text="value" @pressHotBut="pressHotBut"></hot-button>
+          <div v-for="value in hotButData" :key="value">
+            <hot-button :text="value" @hotButValue="sentMsg"></hot-button>
           </div>
         </div>
       </el-scrollbar>
@@ -57,48 +45,31 @@
 
     <!-- chat input -->
     <el-row class="inputrow" justify="center">
-      <el-col :span="19">
-        <el-input v-model="input" placeholder="Please input" />
-      </el-col>
-      <el-col :span="4">
-        <el-button type="primary" @click="inputMsg" :icon="Promotion" />
-      </el-col>
+      <chat-inpute @inputValue="sentMsg"></chat-inpute>
     </el-row>
+
   </div>
 </template>
 
 <script setup lang="ts">
 import HotButton from "./HotButton.vue";
-import { Promotion } from "@element-plus/icons-vue";
+import ChatInpute from "./ChatInpute.vue"
 import { ref, nextTick } from "vue";
 import { UserFilled } from "@element-plus/icons-vue";
-
-const value = ref(0);
 import type { ElScrollbar } from "element-plus";
-const innerRef = ref<HTMLDivElement>();
+
 const scrollbarRef = ref<InstanceType<typeof ElScrollbar>>();
-
 const input = ref("");
-const botmsg = ref("Hi, I'm helper bot, May I help you?");
+const botmsg = ref("Hi, I'm helper bot, May I help you?"); //Init Message
 const msgList = ref([{}]);
-msgList.value.push({ botmsg: botmsg.value });
+const hotButData = ref(["info", "info2"]); //hot button list
 
-const hotButData = ref(["info", "info2"]);
+msgList.value.push({ botmsg: botmsg.value }); 
 
 //Regular Expression
 function isValid(str) {
   return /^\w+$/.test(str);
 }
-
-// Sent Button Handle Event
-function inputMsg() {
-  sentMsg(input.value);
-}
-
-// Hot Button Handle Event
-const pressHotBut = function (msg) {
-  sentMsg(msg);
-};
 
 // Print Msg on Display
 function sentMsg(msg) {
@@ -128,6 +99,12 @@ function scrollDown() {
   height: 300px;
   background-color: #dedfe0;
   /* margin: 5px; */
+}
+.avatar{
+  display: flex;
+  justify-content: left;
+  bottom: 5px;
+  margin: 5px;
 }
 .msgbox {
   display: flex;

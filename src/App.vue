@@ -1,7 +1,6 @@
 <script setup>
 import ChatHeader from './components/ChatHeader.vue'
 import ChatBody from './components/ChatBody.vue'
-
 import { UserFilled } from '@element-plus/icons-vue'
 // import TheWelcome from './components/TheWelcome.vue'
 </script>

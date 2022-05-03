@@ -5,12 +5,12 @@
 </template>
 
 <script setup>
-const emit = defineEmits(["pressHotBut"]);
+const emit = defineEmits(["hotButValue"]);
 const props = defineProps({
   text: String,
 });
 const click_submit = function () {
-  emit("pressHotBut", props.text);
+  emit("hotButValue", props.text);
   
 };
 </script>
